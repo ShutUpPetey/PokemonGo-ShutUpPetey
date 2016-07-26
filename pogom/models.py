@@ -240,6 +240,7 @@ def parse_map(map_dict, iteration_num, step, step_location):
                     'longitude': p['longitude'],
                     'disappear_time': d_t
                 }
+                
 
         if iteration_num > 0 or step > 50:
             for f in cell.get('forts', []):
