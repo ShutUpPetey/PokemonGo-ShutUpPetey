@@ -1,47 +1,55 @@
-# PokemonGo Map![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)
+# Pokemon Go Notification System
 
+This is a fork of [the popular PokemonGo-Map repository](https://github.com/AHAAAAAAA/PokemonGo-Map) with the purpose of allowing users to search for specific Pokemon without having to constantly monitor the map of nearby Pokemon. This allows users to set a list of sought-after Pokemon and receive notifications through [Pushbullet](https://www.pushbullet.com/). All API and map functionality was left untouched.
 
-Live visualization of all the pokemon (with option to show gyms and pokestops) in your area. This is a proof of concept that we can load all the pokemon visible nearby given a location. Currently runs on a Flask server displaying Google Maps with markers on it.
+## Configure PushBullet
+To generate a token for sending yourself notifications using the Pushbullet API, create an account on [Pushbullet](https://www.pushbullet.com/). Then click your avatar and select the "My Account" page. Scroll to where you see "Access Tokens" and click the "Create Access Token" button. Copy this hash, you'll need it later.
 
-Features: 
+## Config File
+Instead of from the command-line, all arguments are read from a `config.json` file. In addition to all of the options laid out [here](https://github.com/AHAAAAAAA/PokemonGo-Map/wiki/Usage), I've introduced two required fields: `pushbullet`, your Pushbullet API key, and `notify`, a comma-separated list of the Pokemon that you'd like to receive Pushbullet notifications for.
+As an alernative to 'notify', you may also make use of a field called 'do_not_notify'. If the 'do_not_notify' field is present and the 'notify' field is not present, you will be notified for ALL pokemon except the ones in the 'do_not_notify' field.
 
-* Shows Pokemon, Pokestops, and gyms with a clean GUI.
-* Notifications 
-* Lure information
-* Multithreaded mode
-* Filters
-* Independent worker threads (many can be used simulatenously to quickly generate a livemap of a huge geographical area)
-* Localization (en, fr, pt_br, de, ru, zh_cn, zh_hk)
-* DB storage (sqlite or mysql) of all found pokemon
-* Incredibly fast, efficient searching algorithm (compared to everything else available)
+Here's a sample `config.json` using the 'notify' field:
 
-[![Deploy](https://raw.githubusercontent.com/sych74/PokemonGo-Map-in-Cloud/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/sych74/PokemonGo-Map-in-Cloud/master/manifest.jps) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://github.com/AHAAAAAAA/PokemonGo-Map/wiki/Heroku-Deployment) 
+```
+{
+  "auth_service": "google",
+  "username": "myemailuser",
+  "password": "pikachu123",
+  "step_limit": 5,
+  "location": "742 Evergreen Terrace, Arlington, VA",
+  "notify": "dratini,magnemite,electabuzz,hitmonchan,hitmonlee,chansey,lapras,snorlax,porygon,mew,mewtwo,moltres,zapdos,articuno,ditto,seel,gyarados,cubone",
+  "pushbullet": "o.XyDeiVeYuM5eSv2ssy7AlFGLDl4ajEXj"
+}
+```
 
-#[Twitter] (https://twitter.com/PoGoMDev), [Website] (https://jz6.github.io/PoGoMap/)#
+Here's a sample `config.json` using the 'do_not_notify' field:
 
-![Map](https://raw.githubusercontent.com/AHAAAAAAA/PokemonGo-Map/master/static/cover.png)
+```
+{
+  "auth_service": "google",
+  "username": "myemailuser",
+  "password": "pikachu123",
+  "step_limit": 5,
+  "location": "742 Evergreen Terrace, Arlington, VA",
+  "do_not_notify": "rattata,raticate,pidgey,pidgeotto,venonat,zubat,golbat,magikarp,weedle,kakuna,caterpie,metapod",
+  "pushbullet": "o.XyDeiVeYuM5eSv2ssy7AlFGLDl4ajEXj"
+}
+```
 
+## Install
 
-## How to setup
+Install the necessary dependencies (including the Pushbullet client) by running `pip install --upgrade -r requirements.txt`. Create a config file and then run the main script using `python main.py`.
 
-For instructions on how to setup and run the tool, please refer to the project [wiki](https://github.com/AHAAAAAAA/PokemonGo-Map/wiki), or the [video guide](https://www.youtube.com/watch?v=RJKAulPCkRI).
+*Using this software is against the ToS and can get you banned. Use at your own risk.*
 
+## Notifications
+You'll have to set up notifications where you'd like to receive them. I installed the [Pushbullet Chrome Extension](https://chrome.google.com/webstore/detail/pushbullet/chlffgpmiacpedhhbkiomidkjlcfhogd?hl=en) and then decided that I found more utility by installing the Pushbullet iPhone app and receiving the notifications on my phone.
 
-## Android Version
+## Screenshots
 
-There is an [Android port](https://github.com/omkarmoghe/Pokemap) in the works. All Android related prs and issues please refer to this [repo](https://github.com/omkarmoghe/Pokemap).
-
-## iOS Version
-
-There is an [iOS port](https://github.com/istornz/iPokeGo) in the works. All iOS related prs and issues please refer to this [repo](https://github.com/istornz/iPokeGo).
-
-## Warnings
-
-Using this software is against the ToS of the game. You can get banned, use this tool at your own risk.
-
-
-## Contributions
-
-Please submit all pull requests to [develop](https://github.com/AHAAAAAAA/PokemonGo-Map/tree/develop) branch.
-
-Building off [tejado's python pgoapi](https://github.com/tejado/pgoapi), [Mila432](https://github.com/Mila432/Pokemon_Go_API)'s API, [leegao's additions](https://github.com/leegao/pokemongo-api-demo/tree/simulation) and [Flask-GoogleMaps](https://github.com/rochacbruno/Flask-GoogleMaps). Current version relies primarily on the pgoapi and Google Maps JS API.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jxmorris12/PokemonGo-Finder/master/screenshots/PhonePushNotif.PNG" height="500">
+  <img src="https://raw.githubusercontent.com/jxmorris12/PokemonGo-Finder/master/screenshots/ChromePushNotif.png" width="400">
+  <img src="https://raw.githubusercontent.com/AHAAAAAAA/PokemonGo-Map/master/static/cover.png">
+</p>

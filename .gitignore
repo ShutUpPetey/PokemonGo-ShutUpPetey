@@ -1,10 +1,4 @@
 *.pyc
-*.idea
-*.db
-*.db-journal
-*.sass-cache
-*.orig
-config/config.ini
-static/dist/
-node_modules/
-venv/
+*.DS_Store
+config.json
+.idea
