@@ -22,7 +22,7 @@ def init():
     # load pushbullet key
     api_key = _str("o.gEylVBAd3KEXImwz8XQilpRJZ5wMU1hZ")
     pushbullet_client = Pushbullet(api_key)
-    wanted_pokemon = _str('pidgey,charmander,charmeleon,charizard,squirtle,wartortle,blastoise,pikachu,raichu,sandslash,vulpix,ninetales,nidoqueen,nidoking,growlithe,arcanine,alakazam,rapidash,onix,voltorb,electrode,kangaskhan,jynx,magmar,aerodactyl,dratini,magnemite,electabuzz,hitmonchan,hitmonlee,chansey,lapras,snorlax,porygon,mew,mewtwo,moltres,zapdos,articuno,ditto,seel,gyarados') . split(",")
+    wanted_pokemon = _str('charmander,charmeleon,charizard,squirtle,wartortle,blastoise,pikachu,raichu,sandslash,vulpix,ninetales,nidoqueen,nidoking,growlithe,arcanine,alakazam,rapidash,onix,voltorb,electrode,kangaskhan,jynx,magmar,aerodactyl,dratini,magnemite,electabuzz,hitmonchan,hitmonlee,chansey,lapras,snorlax,porygon,mew,mewtwo,moltres,zapdos,articuno,ditto,seel,gyarados') . split(",")
     wanted_pokemon = [a.lower() for a in wanted_pokemon]
 
 # Safely parse incoming strings to unicode
