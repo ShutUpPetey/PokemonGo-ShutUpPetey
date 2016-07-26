@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-
+import notifier
 import os
 from peewee import Model, MySQLDatabase, SqliteDatabase, InsertQuery, IntegerField,\
                    CharField, DoubleField, BooleanField, DateTimeField,\
