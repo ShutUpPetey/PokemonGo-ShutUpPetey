@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import notifier
+
 import os
 from peewee import Model, MySQLDatabase, SqliteDatabase, InsertQuery, IntegerField,\
                    CharField, DoubleField, BooleanField, DateTimeField,\
@@ -15,6 +15,7 @@ from . import config
 from .utils import get_pokemon_name, get_args
 from .transform import transform_from_wgs_to_gcj
 from .customLog import printPokemon
+from .notifier import pokemon_found
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(module)11s] [%(levelname)7s] %(message)s')
 
