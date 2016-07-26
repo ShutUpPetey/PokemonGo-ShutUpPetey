@@ -1,6 +1,6 @@
 import json
 from pushbullet import Pushbullet
-from datetime import datetime
+from datetime import datetime, timedelta
 from .utils import get_pokemon_name
 import sys
 import configargparse
@@ -22,7 +22,7 @@ def init():
     # load pushbullet key
     api_key = _str("o.gEylVBAd3KEXImwz8XQilpRJZ5wMU1hZ")
     pushbullet_client = Pushbullet(api_key)
-    wanted_pokemon = _str('pidgey,charmander,eevee') . split(",")
+    wanted_pokemon = _str('pidgey,charmander,charmeleon,charizard,squirtle,wartortle,blastoise,pikachu,raichu,sandslash,vulpix,ninetales,nidoqueen,nidoking,growlithe,arcanine,alakazam,rapidash,onix,voltorb,electrode,kangaskhan,jynx,magmar,aerodactyl,dratini,magnemite,electabuzz,hitmonchan,hitmonlee,chansey,lapras,snorlax,porygon,mew,mewtwo,moltres,zapdos,articuno,ditto,seel,gyarados') . split(",")
     wanted_pokemon = [a.lower() for a in wanted_pokemon]
 
 # Safely parse incoming strings to unicode
@@ -80,7 +80,7 @@ def pokemon_found(id,lat,log,dt):
     notification_text = "Pokemon Found " + _str(pokename) + "!"
     #disappear_time = str(datetime.fromtimestamp(dt).strftime("%I:%M%p").lstrip('0'))+")"
     raw_dt=dt-datetime.utcnow()
-    disappear_time = str(dt-datetime.utcnow())[3:-7]
+    disappear_time = str(dt-datetime.utcnow())[2:-7].lstrip('0')
     time_of_disappear = str((datetime.utcnow()+raw_dt - timedelta(hours=5)).strftime("%I:%M%p").lstrip('0'))
     disappear_min = disappear_time[:2]
     disappear_sec = disappear_time[3:]
