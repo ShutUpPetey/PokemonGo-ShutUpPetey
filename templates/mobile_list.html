@@ -22,6 +22,7 @@ span{color:#777}
 <h2>Nearby Pokémon <small id="msg"></small></h2>
 <div class="nav">
 <button onclick="loadNearby()">Refresh</button>
+<button onclick="desktop()">Return To Desktop</button>
 <label><input type="checkbox" id="use-loc" onchange="toggleLocation()">Use device location</label>
 </div>
 </div>
@@ -34,17 +35,19 @@ span{color:#777}
 <a class="origin" href='geo:0,0?q={{origin_lat}},{{origin_lng}}(origin)'>origin location</a>
 <script>
   var msg = document.getElementById('msg');
+  var useExclude = document.getElementById('use-exclude');
   var useLoc = document.getElementById('use-loc');
+  var exclude = localStorage.remember_select_exclude;
   if (localStorage.useLoc) useLoc.checked = localStorage.useLoc === 'true';
   function toggleLocation() {localStorage.useLoc = useLoc.checked;}
   function loadNearby() {
     if (localStorage.useLoc !== 'true') {
-      return (location.href="/mobile");
+      return (location.href="/mobile?exclude="+exclude);
     } else if ("geolocation" in navigator) {
       msg.innerText='Getting location...';
       navigator.geolocation.getCurrentPosition(function(p) {
         msg.innerText='Reloading...';
-        location.href='/mobile?lat='+p.coords.latitude+'&lon='+p.coords.longitude;
+		location.href='/mobile?exclude='+exclude+'&lat='+p.coords.latitude+'&lon='+p.coords.longitude;
       }, function(err) {
         msg.innerText='';
         alert('Failed to get location: '+err.message);
@@ -54,6 +57,10 @@ span{color:#777}
         maximumAge: 5000
       });
     } else {alert('Your device does not support web geolocation');}
+  }
+  
+  function desktop(){
+	return (location.href="/");
   }
   var cards = document.querySelectorAll('.card');
   function updateTimes() {
