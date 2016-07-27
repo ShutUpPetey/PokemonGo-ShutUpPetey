@@ -59,6 +59,11 @@ def get_args():
     parser.add_argument('--db-user', help='Username for the database')
     parser.add_argument('--db-pass', help='Password for the database')
     parser.add_argument('--db-host', help='IP or hostname for the database')
+    parser.add_argument('--notify', help='List of pokemon to notify for, by lowercase name')
+    parser.add_argument('--channel', help='pushbullet channel tag')
+    parser.add_argument('--notify_topleft', help='Lat,Log for rough notification location')
+    parser.add_argument('--notify_bottomright', help='Lat, Log for rough notification location')
+    
     parser.set_defaults(DEBUG=False)
 
     args = parser.parse_args()
