@@ -13,6 +13,12 @@ sys.setdefaultencoding('utf8')
 pushbullet_client = None
 wanted_pokemon = None
 unwanted_pokemon = None
+my_channel = None
+north_boundry = None
+south_boundry = None
+east_boundry = None
+west_boundry = None
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(module)11s] [%(levelname)7s] %(message)s')
 
