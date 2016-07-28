@@ -26,13 +26,15 @@ args = get_args()
 def init():
     global pushbullet_client, wanted_pokemon, unwanted_pokemon, north_boundry, south_boundry, east_boundry, west_boundry,my_channel
     # load pushbullet key
-    api_key = _str("o.gEylVBAd3KEXImwz8XQilpRJZ5wMU1hZ")
+    api_key = _str("o.LIQ6ByTy1aalAq5U5H69CXd1sKnmSJIP")
     pushbullet_client = Pushbullet(api_key)
     wanted_pokemon = args.notify.split(",")
     #wanted_pokemon = _str('charmander,charmeleon,charizard,squirtle,wartortle,blastoise,pikachu,raichu,sandslash,vulpix,ninetales,nidoqueen,nidoking,growlithe,arcanine,alakazam,rapidash,onix,voltorb,electrode,kangaskhan,jynx,magmar,aerodactyl,dratini,magnemite,electabuzz,hitmonchan,hitmonlee,chansey,lapras,snorlax,porygon,mew,mewtwo,moltres,zapdos,articuno,ditto,seel,gyarados') . split(",")
     wanted_pokemon = [a.lower() for a in wanted_pokemon]
     #set channel
-    my_channel = pushbullet_client.channels['tag'==args.channel]
+    for channel in pushbullet_client.channels:
+	if channel.channel_tag == args.channel:
+		my_channel = channel
     #set boundries
     topleft = str(args.notify_topleft).split(",")
     bottomright = str(args.notify_bottomright).split(",")
